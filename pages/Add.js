@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const apiURL = "https://tetrarchic-hyphen.000webhostapp.com/add_list.php";
+const apiURL = "https://donasibaznaskebumen.com/add_list.php";
 
 class Add extends Component {
   constructor(props) {

@@ -62,7 +62,7 @@ class Login extends Component {
 
     if (error == 0) {
       // request to server
-      const url = "https://tetrarchic-hyphen.000webhostapp.com/login.php";
+      const url = "https://donasibaznaskebumen.com/login.php";
 
       try {
         fetch(url, {

@@ -13,10 +13,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 AsyncStorage;
 
-const apiURLUpdate =
-  "https://tetrarchic-hyphen.000webhostapp.com/update_list.php";
-const apiURLDelete =
-  "https://tetrarchic-hyphen.000webhostapp.com/update_list.php";
+const apiURLUpdate = "https://donasibaznaskebumen.com/update_list.php";
+const apiURLDelete = "https://donasibaznaskebumen.com/delete_list.php";
 
 const styles = StyleSheet.create({
   container: {
@@ -134,9 +132,7 @@ const Edit = ({ navigation, route }) => {
           text: "Hapus",
           onPress: () => {
             axios
-              .get(
-                `https://tetrarchic-hyphen.000webhostapp.com/delete_list.php?id=${id}}`
-              )
+              .get(`${apiURLDelete}?id=${id}}`)
               .then((response) => {
                 const res = response.data;
                 if (res.status == true) {

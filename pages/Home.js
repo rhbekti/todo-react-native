@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -21,26 +21,15 @@ export class Home extends Component {
   }
 
   componentDidMount() {
-    const login = ({ navigation }) => {
-      useEffect(() => {
-        setTimeout(() => {
-          AsyncStorage.getItem("email").then((value) => {
-            value === null
-              ? navigation.replace("Login")
-              : navigation.replace("Home");
-          });
-        }, 3000);
-      }, []);
-    };
     axios
-      .get("https://tetrarchic-hyphen.000webhostapp.com/get_list.php")
+      .get("https://donasibaznaskebumen.com/get_list.php")
       .then((response) => {
         const todos = response.data.data;
         this.setState({ todos });
       })
       .catch((error) => {
         ToastAndroid.showWithGravityAndOffset(
-          "Gagal Mendapakan Data",
+          "Gagal mendapatkan data",
           ToastAndroid.LONG,
           ToastAndroid.BOTTOM,
           25,
@@ -50,14 +39,14 @@ export class Home extends Component {
   }
   componentDidUpdate() {
     axios
-      .get("https://tetrarchic-hyphen.000webhostapp.com/get_list.php")
+      .get("https://donasibaznaskebumen.com/get_list.php")
       .then((response) => {
         const todos = response.data.data;
         this.setState({ todos });
       })
       .catch((error) => {
         ToastAndroid.showWithGravityAndOffset(
-          "Gagal Mendapakan Data",
+          "Gagal mendapatkan data",
           ToastAndroid.LONG,
           ToastAndroid.BOTTOM,
           25,
@@ -108,16 +97,22 @@ export class Home extends Component {
           </TouchableOpacity>
         </View>
         <ScrollView>
-          {this.state.todos.map((item, index) => {
-            return (
-              <View key={index} style={styles.list}>
-                <TouchableOpacity onPress={() => this.detail(item)}>
-                  <Text style={styles.title}>{item.judul}</Text>
-                  <Text style={styles.deskripsi}>{item.deskripsi}</Text>
-                </TouchableOpacity>
-              </View>
-            );
-          })}
+          {this.state.todos > [] ? (
+            this.state.todos.map((item, index) => {
+              return (
+                <View key={index} style={styles.list}>
+                  <TouchableOpacity onPress={() => this.detail(item)}>
+                    <Text style={styles.title}>{item.judul}</Text>
+                    <Text style={styles.deskripsi}>{item.deskripsi}</Text>
+                  </TouchableOpacity>
+                </View>
+              );
+            })
+          ) : (
+            <Text style={{ fontSize: 16, marginVertical: 10 }}>
+              List tidak ditemukan
+            </Text>
+          )}
         </ScrollView>
       </SafeAreaView>
     );
